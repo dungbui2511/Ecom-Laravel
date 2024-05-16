@@ -1,6 +1,5 @@
 <x-guest-layout>
-    <!--main area-->
-	<main id="main" class="main-site left-sidebar">
+<main id="main" class="main-site left-sidebar">
 
 <div class="container">
 
@@ -15,20 +14,21 @@
             <div class=" main-content-area">
                 <div class="wrap-login-item ">						
                     <div class="login-form form-item form-stl">
-                        <x-jet-validation-errors class="mb-4"/>
                         <form name="frm-login" method="POST" action="{{route('login')}}">
                             @csrf
+                            <x-jet-validation-errors class="mb-4"/>
                             <fieldset class="wrap-title">
                                 <h3 class="form-title">Log in to your account</h3>										
                             </fieldset>
                             <fieldset class="wrap-input">
                                 <label for="frm-login-uname">Email Address:</label>
-                                <input type="email" id="frm-login-uname" name="email" placeholder="Type your email address" :value="old('email')" required autofocus>
+                                <input type="email" id="frm-login-uname" name="email" :value="old('email')" required autofocus placeholder="Type your email address">
                             </fieldset>
                             <fieldset class="wrap-input">
                                 <label for="frm-login-pass">Password:</label>
-                                <input type="password" id="frm-login-pass" name="password" placeholder="************" required autocomplete="current-password">
+                                <input type="password" id="frm-login-pass" name="password" required autocomplete="current-password" placeholder="************">
                             </fieldset>
+                            
                             <fieldset class="wrap-input">
                                 <label class="remember-field">
                                     <input class="frm-input " name="rememberme" id="rememberme" value="forever" type="checkbox"><span>Remember me</span>
@@ -46,5 +46,4 @@
 </div><!--end container-->
 
 </main>
-<!--main area-->
 </x-guest-layout>

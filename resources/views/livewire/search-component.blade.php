@@ -47,9 +47,8 @@
                 </div>
 
             </div><!--end wrap shop control-->
-
+            @if($products->count()>0)
             <div class="row">
-
                 <ul class="product-list grid-products equal-container">
                   @foreach($products as $product)
                   <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
@@ -221,13 +220,15 @@
                             </div>
                         </div>
                     </li> -->
-
                 </ul>
             </div>
             <div class="wrap-pagination-info">
                {{$products->links()}}
             </div>
         </div><!--end main products area-->
+        @else
+        <p style="padding-top: 30px;">No Products</p>
+        @endif
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
             <div class="widget mercado-widget categories-widget">
                 <h2 class="widget-title">All Categories</h2>

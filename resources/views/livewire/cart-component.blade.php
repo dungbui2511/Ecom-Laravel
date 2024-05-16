@@ -1,8 +1,5 @@
-<!--main area-->
 <main id="main" class="main-site">
-
 <div class="container">
-
     <div class="wrap-breadcrumb">
         <ul>
             <li class="item-link"><a href="/" class="link">home</a></li>
@@ -10,7 +7,6 @@
         </ul>
     </div>
     <div class=" main-content-area">
-
         <div class="wrap-iten-in-cart">
             @if(Session::has('success_message'))
             <div class="alert alert-success">
@@ -50,7 +46,6 @@
             <p>No item in cart</p>
             @endif
         </div>
-
         <div class="summary">
             <div class="order-summary">
                 <h4 class="title-box">Order Summary</h4>
@@ -71,7 +66,6 @@
                 <a class="btn btn-update" href="#">Update Shopping Cart</a>
             </div>
         </div>
-
         <div class="wrap-show-advance-info-box style-1 box-in-site">
             <h3 class="title-box">Most Viewed Products</h3>
             <div class="wrap-products">
@@ -219,11 +213,9 @@
                         </div>
                     </div>
                 </div>
-            </div><!--End wrap-products-->
+            </div>
         </div>
 
-    </div><!--end main content area-->
-</div><!--end container-->
-
+    </div>
+</div>
 </main>
-<!--main area-->
