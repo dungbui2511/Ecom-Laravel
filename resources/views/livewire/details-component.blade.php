@@ -24,7 +24,6 @@
                 <div class="detail-media">
                     <div class="product-gallery">
                       <ul class="slides">
-
                         <li data-thumb="{{asset('assets/images/products/digital_18.jpg')}}">
                             <img src="{{asset('assets/images/products/'.$product->image)}}" alt="{{$product->name}}" />
                         </li>
@@ -42,7 +41,7 @@
                     </div>
                     <h2 class="product-name">{{$product->name}}</h2>
                     <div class="short-desc">
-                       {{$product->short_description}}
+                       {!!$product->short_description!!}
                     </div>
                     <div class="wrap-social">
                         <a class="link-socail" href="#"><img src="{{asset('assets/images/social-list.png')}}" alt=""></a>
@@ -62,7 +61,6 @@
                         <span>Quantity:</span>
                         <div class="quantity-input">
                             <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
-                            
                             <a class="btn btn-reduce" href="#"></a>
                             <a class="btn btn-increase" href="#"></a>
                         </div>
@@ -87,7 +85,7 @@
                     </div>
                     <div class="tab-contents">
                         <div class="tab-content-item active" id="description">
-                           {{$product->description}}
+                           {!!$product->description!!}
                         </div>
                         <div class="tab-content-item " id="add_infomation">
                             <table class="shop_attributes">

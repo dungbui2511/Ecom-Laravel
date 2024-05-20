@@ -140,7 +140,9 @@
 								<a href="#" class="link-direction">
 									<i class="fa fa-heart" aria-hidden="true"></i>
 									<div class="left-info">
-										<span class="index">0 item</span>
+										@if(Cart::instance('wishlist')->count() > 0)
+										<span class="index">{{Cart::instance('wishlist')->count()}} items</span>
+										@endif
 										<span class="title">Wishlist</span>
 									</div>
 								</a>
@@ -149,8 +151,8 @@
 								<a href="/cart" class="link-direction">
 									<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 									<div class="left-info">
-										@if(Cart::count()>0)
-										<span class="index">{{Cart::count()}} items</span>
+										@if(Cart::instance('cart')->count()>0)
+										<span class="index">{{Cart::instance('cart')->count()}} items</span>
 										@endif
 										<span class="title">CART</span>
 									</div>
@@ -474,6 +476,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" integrity="sha512-GDey37RZAxFkpFeJorEUwNoIbkTwsyC736KNSYucu1WJWFK9qTdzYub8ATxktr6Dwke7nbFaioypzbDOQykoRg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js" integrity="sha512-EnXkkBUGl2gBm/EIZEgwWpQNavsnBbeMtjklwAa7jLj60mJk932aqzXFmdPKCG6ge/i8iOCK0Uwl1Qp+S0zowg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.tiny.cloud/1/koj4izix2lr40ktaucbrr8kgnpojom66g022cnup1oqok6u4/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 	@livewireScripts
 	@stack('scripts')
 </body>
