@@ -6,6 +6,8 @@ use App\Models\Coupon;
 use Carbon\Carbon;
 use Livewire\Component;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
+
 class CartComponent extends Component
 {
     public $haveCouponCode;
@@ -91,6 +93,43 @@ class CartComponent extends Component
     {
         session()->forget('coupon');
     }
+    public function checkout()
+    {
+        if(Auth::check())
+        {
+            return redirect()->route('product.checkout');
+        }
+        else
+        {
+            return redirect()->route('login');
+        }
+    }
+    public function setAmountForCheckout()
+    {
+        if(!Cart::instance('cart')->count() > 0)
+        {
+            session()->forget('checkout');
+            return;
+        }
+        if(session()->has('coupon'))
+        {
+            session()->put('checkout',[
+                'discount' => $this->discount,
+                'subtotal' => $this->subtotalAfterDiscount,
+                'tax' => $this->taxAfterDiscount,
+                'total' => $this->totalAfterDiscount
+            ]);
+        }
+        else
+        {
+            session()->put('checkout',[
+                'discount' => $this->discount,
+                'subtotal' => Cart::instance('cart')->subtotal(),
+                'tax' =>Cart::instance('cart')->tax(),
+                'total' =>Cart::instance('cart')->total()
+            ]);
+        }
+    }
     public function render()
     {
         if(session()->has('coupon'))
@@ -104,6 +143,7 @@ class CartComponent extends Component
                 $this->calculateDiscounts();
             }
         }
+        $this->setAmountForCheckout();
         return view('livewire.cart-component')->layout("layouts.base");
     }
 }
