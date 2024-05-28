@@ -55,7 +55,7 @@
                 </p>
                 <p class="row-in-form">
                     <label for="zip-code">Province:</label>
-                    <input id="zip-code" type="number" name="zip-code" value="" placeholder="Your postal code" wire:model="province">
+                    <input id="zip-code" type="text" name="zip-code" value="" placeholder="Your postal code" wire:model="province">
                     @error('province') <span class="text-danger">{{$message}}</span> @enderror
                 </p>
                 <p class="row-in-form">
@@ -105,12 +105,12 @@
                 </p>
                 <p class="row-in-form">
                     <label for="phone">Line1:<span>*</span></label>
-                    <input type="number" name="add" value="" placeholder="10 digits format" wire:model="s_line1">
+                    <input type="text" name="add" value="" placeholder="10 digits format" wire:model="s_line1">
                     @error('s_line1') <span class="text-danger">{{$message}}</span>@enderror
                 </p>
                 <p class="row-in-form">
                     <label for="phone">Line2:<span>*</span></label>
-                    <input type="number" name="add" value="" placeholder="10 digits format" wire:model="s_line2">
+                    <input type="text" name="add" value="" placeholder="10 digits format" wire:model="s_line2">
                     @error('s_line2') <span class="text-danger">{{$message}}</span>@enderror
                 </p>
                 <!-- <p class="row-in-form">

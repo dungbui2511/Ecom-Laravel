@@ -123,7 +123,7 @@ class CartComponent extends Component
         else
         {
             session()->put('checkout',[
-                'discount' => $this->discount,
+                'discount' => 0,
                 'subtotal' => Cart::instance('cart')->subtotal(),
                 'tax' =>Cart::instance('cart')->tax(),
                 'total' =>Cart::instance('cart')->total()
