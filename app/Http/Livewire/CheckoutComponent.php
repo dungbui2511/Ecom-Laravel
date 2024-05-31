@@ -83,10 +83,10 @@ class CheckoutComponent extends Component
         ]);
         $order = new Order();
         $order->user_id = Auth::user()->id;
-        $order->subtotal =  session()->get('checkout')['subtotal'];
+        $order->subtotal =  floatval(str_replace(',','',session()->get('checkout')['subtotal']));
         $order->discount =  session()->get('checkout')['discount'];
         $order->tax =  session()->get('checkout')['tax'];
-        $order->total =  session()->get('checkout')['total'];
+        $order->total =  floatval(str_replace(',','',session()->get('checkout')['total']));
         $order->firstname = $this->firstname;
         $order->lastname = $this->lastname;
         $order->email = $this->email;
