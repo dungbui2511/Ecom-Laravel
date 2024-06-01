@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Sale;
 use Livewire\Component;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class DetailsComponent extends Component
 {
@@ -18,9 +19,16 @@ class DetailsComponent extends Component
     }
     public function store($product_id,$product_name,$product_price)
     {
+       if(Auth::check())
+       {
         Cart::instance('cart')->add($product_id,$product_name,$this->qty,$product_price)->associate('App\Models\Product');
         session()->flash('success_message','Item added successfully');
         return redirect()->route('product.cart');
+       }
+       else
+       {
+        return redirect()->route('login');
+       }
     }
     public function decreseQuantity(){
         if($this->qty > 1){

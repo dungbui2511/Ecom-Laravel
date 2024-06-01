@@ -7,6 +7,7 @@ use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class ShopComponent extends Component
 {
@@ -24,14 +25,28 @@ class ShopComponent extends Component
     }
     public function store($product_id,$product_name,$product_price)
     {
-        Cart::instance('cart')->add($product_id,$product_name,1,$product_price)->associate('App\Models\Product');
-        session()->flash('success_message','Item added successfully');
-        return redirect()->route('product.cart');
+        if(Auth::check())
+        {
+            Cart::instance('cart')->add($product_id,$product_name,1,$product_price)->associate('App\Models\Product');
+            session()->flash('success_message','Item added successfully');
+            return redirect()->route('product.cart');   
+        }
+        else
+        {
+            return redirect()->route('login'); 
+        }
     }
     public function addToWishList($product_id,$product_name,$product_price)
     {
+       if(Auth::check())
+       {
         Cart::instance('wishlist')->add($product_id,$product_name,1,$product_price)->associate('App\Models\Product');
         $this->emitTo('wishlist-count-component','refreshComponent');
+       }
+       else
+        {
+            return redirect()->route('login'); 
+        }
     }
     public function removeFromWishList($product_id)
     {
@@ -64,6 +79,7 @@ class ShopComponent extends Component
             $products = Product::whereBetween('regular_price',[$this->min_price,$this->max_price])->paginate($this->pagesize);
         }
         $categories = Category::all();
+       
         return view('livewire.shop-component',['products'=>$products,'categories'=>$categories])->layout("layouts.base");
     }
 }

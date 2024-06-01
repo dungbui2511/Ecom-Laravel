@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Shipping;
 use App\Models\Transaction;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class CheckoutComponent extends Component
@@ -165,6 +167,10 @@ class CheckoutComponent extends Component
             return redirect()->route('product.cart');
         }
     }
+    // public function sendOrderConfirmationMail($order)
+    // {
+    //     Mail::to($order->email)->send(new OrderMail($order));
+    // }
     public function render()
     {
         $this->verifyForCheckout();
