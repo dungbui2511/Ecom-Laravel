@@ -22,6 +22,7 @@ class AdminAddProductComponent extends Component
     public $featured;
     public $quantity;
     public $image;
+    public $images;
     public $category_id;
     public function mount()
     {
@@ -45,7 +46,7 @@ class AdminAddProductComponent extends Component
              'stock_status' => 'required',
              'featured' => 'required',
              'quantity' => 'required|numeric',
-             'image' => 'required|mimes:jepg,png',
+             'image' => 'required',
              'category_id' => 'required'
         ]);
     }
@@ -79,6 +80,21 @@ class AdminAddProductComponent extends Component
         $imageName = Carbon::now()->timestamp. '.' . $this->image->extension();
         $this->image->storeAs('products',$imageName);
         $product->image = $imageName;
+        if($this->images)
+        {
+            $imagesname = '';
+            foreach($this->images as $key => $image)
+            {
+                $imgName = Carbon::now()->timestamp . $key . '.' . $this->image->extension();
+                $image->storeAs('products',$imgName);
+                if($imagesname ==''){
+                    $imagesname = $imgName;
+                }else{
+                    $imagesname = $imagesname . ',' . $imgName;
+                }
+            }
+            $product->images = $imagesname;
+        }
         $product->category_id = $this->category_id;
         $product->save();
         session()->flash('message','Product has been created successfully');
